@@ -1,15 +1,23 @@
 {
   "index": "Introduction",
   "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "advanced": "Advanced",
+  "blogApi": "Blog Api",
+  
+  "/": {
+    "title": "Home",
+    "type": "page"
+  },
+
   "about": {
     "title": "About",
     "type": "page"
   },
+
   "contact": {
     "title": "Contact ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "https://satyamregmi.com.np/contact",
     "newWindow": true
   }
 }
