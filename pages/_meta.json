@@ -1,12 +1,11 @@
 {
   "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced",
   "blogApi": "Blog Api",
   
   "/": {
     "title": "Home",
-    "type": "page"
+    "type": "page",
+    "href": "/"
   },
 
   "about": {
