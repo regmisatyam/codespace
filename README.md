@@ -2,7 +2,7 @@
 
 This is a template of documentation by [Satyam Docs](https://satyamregmi.com.np).
 
-[**Live Demo →**](https://docs.satyamregmi.com.np)
+[**Live Demo →**](https://docs-satyam.vercel.app)
 
 [![](.github/template.png)](https://docs.satyamregmi.com.np)
 
