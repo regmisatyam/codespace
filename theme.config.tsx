@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
     const { asPath } = useRouter()
     if (asPath !== '/') {
       return {
-        titleTemplate: '%s – Satyam Docs'
+        titleTemplate: '%s – SATYAM CodeSpace'
       }
     }
   },
@@ -17,13 +17,13 @@ const config: DocsThemeConfig = {
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:title" content="Satyam Docs" />
-      <meta property="og:description" content="Blog Api for all. Documentation page." />
+      <meta property="og:title" content="Satyam CodeSpace" />
+      <meta property="og:description" content="Source codes of projects" />
       <link rel="icon" href="https://satyamregmi.com.np/images/lion-logo.png" type="image/png" media="(prefers-color-scheme: dark)" />
     </>
   ), 
 
-  logo: <span>Docs</span>,
+  logo: <span>CodeSpace</span>,
   project: {
     link: 'https://github.com/regmisatyam',
   },
@@ -35,7 +35,7 @@ const config: DocsThemeConfig = {
 </svg>
     )
   },
-  docsRepositoryBase: 'https://github.com/regmisatyam/api_documentation',
+  docsRepositoryBase: 'https://github.com/regmisatyam/codespace',
   footer: {
     component: (
       <Footer />
