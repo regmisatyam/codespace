@@ -33,7 +33,7 @@ export default () => {
             <div className="max-w-lg sm:mx-auto sm:text-center">
                 <img src="https://satyamregmi.com.np/images/lion-logo.png" className="w-32 sm:mx-auto" />
                 <p className="leading-relaxed mt-2 text-[15px]">
-                Welcome developers! Here you will find different APIs that might be helpful for you. I created this while learning!</p>
+                Welcome developers! Here you will find source code of different Projects. I created this while learning!</p>
             </div>
             <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
                 {

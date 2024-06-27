@@ -3,3 +3,332 @@
 
 ### Live demo
 Visit: [https://satyamregmi.com.np/projects/Image2PDF/](https://satyamregmi.com.np/projects/Image2PDF/)
+
+This is a js project that converts Image to PDF format.
+
+## Create index.html
+```html filename="index,html" copy
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image 2 PDF | SATYAM</title>
+        <!-- Meta Tags for SEO -->
+        <meta name="description" content="Convert images into PDF in seconds with Img2PDF by SATYAM. Simply upload images and generate PDF files effortlessly.">
+        <meta name="keywords" content="image to PDF, converter, SATYAM, PDF generator">
+        <meta name="author" content="SATYAM REGMI">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="https://satyamregmi.com.np/images/lion-logo.png">
+    </head>
+<body>
+
+<div class="head-container">
+    
+    <h1 >Convert Image into Pdf</h1>
+    <p class="centered">
+        Simply upload Images and convert into PDF in Seconds.
+    </p>
+</div>
+    <div class="main_bdy">
+       
+    <div class="container" id="cont">
+        <h1>Upload Images</h1><br>
+        <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
+        <label for="file-input">
+            <i class="fas fa-upload"></i> &nbsp; Upload Photos
+        </label>
+        <p id="num-of-files">No Files Chosen</p>
+        <div id="images"> </div>
+        <br>
+        <span type="button" class="btn" id="btn" onclick="printPDF()">Download PDF</span>
+    </div>
+<div class="container">
+    <h1>Preview <i class="fas fa-eye"></i> <i class="fas fa-download" id="btn-fa" onclick="printPDF()"></i></h1>
+    <div id="pdf-preview-container"></div>
+    <span type="button" class="btn" id="btn-2" onclick="printPDF()">Download PDF</span>
+</div>
+</div>
+    <!--Script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+<footer class = "footer bg-dark">
+    <div class="ft-container">
+        <div class = "footer-content text-center">
+            <p class="fs-15">&copy;Copyright 2024. All Rights Reserved - <span><a href="https://satyamregmi.com.np">SATYAM REGMI</a></span></p>
+        </div>
+    </div>
+</footer>
+</html>
+```
+## Create style.css
+
+```css filename="style.css" copy
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Rubik",sans-serif;
+}
+:root{
+    --clr-blue: #1A91F0;
+    --clr-blue-mid: #1170CD;
+    --clr-blue-dark: #1A1C6A;
+    --clr-white: #fff;
+    --clr-bright: #EFF2F9;
+    --clr-dark: #1e2532;
+    --clr-black: #000;
+    --clr-grey: #656e83;
+    --clr-green: #1472ed;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-manrope: 'Manrope', sans-serif;;
+    --transition: all 300ms ease-in-out;
+}
+a:-webkit-any-link {
+    color: currentColor;
+    cursor: pointer;
+    text-decoration: none;
+}
+body{
+    background-color: #f5f8ff;
+   
+}
+.main_bdy{
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+}
+.container{
+    background-color: #ffffff;
+    width: 100%;
+    min-width: max-content;
+    position: relative;
+    margin:  10px;
+    padding: 30px 20px;
+    border-radius: 7px;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+input[type="file"]{
+    display: none;
+}
+label{
+    display: block;
+    position: relative;
+    background-color: #025bee;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+    width: 300px;
+    padding: 12px 0;
+    margin: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn{
+    background-color: #00b900;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+    width: 300px;
+    padding: 12px 0;
+    margin: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#btn{
+    display: none;
+}
+#btn-2{
+    display: none;
+}
+#btn-fa{
+    display: none;
+    cursor: pointer;
+    color: #025bee;
+}
+.container p{
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+#images{
+    width: min-content;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.head-container{
+    margin: 20px;
+    text-align: center;
+}
+.head-container p{
+    font-size: large;
+    color: #ffffff;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.head-container img{
+    width: 100%;
+    height: 300px;
+}
+.centered {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+figure{
+    width: fit-content;
+}
+img{
+    width: 300px;
+}
+figcaption{
+    text-align: center;
+    font-size: 2.4vmin;
+    margin-top: 0.5vmin;
+}
+delete{
+    padding: 2px;
+    color: #ffffff;
+    background: red;
+    cursor: pointer;
+}
+#pdf-preview-container{
+    margin: 0px auto;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    border: 1px solid #000;
+    max-width: 400px;
+}
+/* footer */
+.footer{
+    padding: 3rem 0;
+    bottom: 0%;
+}
+.ft-container{
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    
+}
+.footer-content p{
+    color: var(--clr-grey);
+}
+.footer-content p span{
+    color: var(--clr-white);
+}
+.bg-dark{
+    background-color:black;
+}
+
+/* Responsive styles for mobile devices */
+@media only screen and (max-width: 887px) {
+    .main_bdy {
+        clear: both; /* Clear any float to ensure content displays below */
+        display: grid; /* Adjust margin as needed */
+    }
+    .container{
+        position: relative;
+        margin:  10px auto;
+        padding: 50px 20px;
+        border-radius: 7px;
+        box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+        min-width: min-content;
+    }
+}
+```
+## Create script.js
+
+```js filename="script.js" copy 
+let fileInput = document.getElementById("file-input");
+let imageContainer = document.getElementById("images");
+let numOfFiles = document.getElementById("num-of-files");
+let pdfPreviewContainer = document.getElementById("pdf-preview-container");
+const btn = document.getElementById("btn");
+
+function clearPDFPreview() {
+    pdfPreviewContainer.innerHTML = '';
+}
+
+function preview() {
+    clearPDFPreview();
+    imageContainer.innerHTML = "";
+    numOfFiles.textContent = `${fileInput.files.length} Files Selected`;
+
+    for (let i = 0; i < fileInput.files.length; i++) {
+        let reader = new FileReader();
+        let figure = document.createElement("figure");
+        let figCap = document.createElement("figcaption");
+        figCap.innerText = fileInput.files[i].name;
+        figure.appendChild(figCap);
+
+        reader.onload = (index => {
+            return () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+
+                // Add remove button/icon
+                let removeBtn = document.createElement("delete");
+                removeBtn.textContent = " X ";
+                
+                removeBtn.addEventListener("click", () => removeImagePreview(index));
+                figure.appendChild(removeBtn);
+
+                showImagePreview(reader.result);
+            };
+        })(i);
+
+        imageContainer.appendChild(figure);
+        reader.readAsDataURL(fileInput.files[i]);
+        document.getElementById("btn").style.display = "block";
+    }
+}
+
+function showImagePreview(imageSrc) {
+    let imgPreview = document.createElement("img");
+    imgPreview.setAttribute("src", imageSrc);
+    pdfPreviewContainer.appendChild(imgPreview);
+    document.getElementById("btn-2").style.display = "block";
+    document.getElementById("btn-fa").style.display = "block";
+}
+
+function removeImagePreview(index) {
+    // Remove image preview from both the image container and PDF preview container
+    imageContainer.removeChild(imageContainer.children[index]);
+    pdfPreviewContainer.removeChild(pdfPreviewContainer.children[index]);
+}
+
+function printPDF() {
+    clearPDFPreview();
+    var doc = new jsPDF();
+    var images = imageContainer.getElementsByTagName("img");
+
+    for (var i = 0; i < images.length; i++) {
+        var imgData = images[i].src;
+        doc.addImage(imgData, 'JPEG', 10, 10, 190, 150);
+        if (i < images.length - 1) {
+            doc.addPage();
+        }
+    }
+
+    doc.save('img2Pdf-by-satyam.pdf');
+}
+```
